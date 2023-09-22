@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+Component/state structure practice with Jonas Schmedtmann.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Splitting a React UI into components.
 
-## Available Scripts
+## Component size matters
 
-In the project directory, you can run:
+* - Start by sorting them from smallest to largest where you can (or, top to bottom, outside in, depending on how you look at it).
+* - If a component all of a sudden has 10-15 pieces of state/props to manage, it's probably too big and should be broken up. **
+* - Big components cannot easily be reused.
+* - One large component is hard to understand if it contains too many lines of code.
 
-### `npm start`
+- On the flip side, you don't break up EVERYTHING into a component, it's just not necessary and creates a code base that is way too abstracted, or hidden from the developer.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+###  4 Criteria for splitting a UI into components: 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Logical separation of content/layout** - Does the component contain pieces of content or layout that 'don't belong together'? (if so, you might need a new component)
 
-### `npm run build`
+2. **Reusability** - Is it possible to reuse part of the component? Do you want or need to reuse it?
+    - **Maintainability** - How easy will you maintain this component in future changes and updates?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Responsibilities/complexity**
+    - Is the component doing too many different things?
+    - Does the component rely on too many props?
+    - Does the compponent have too many pieces of state and/or effects?
+    - Is the code, and JSX, too complex/confusing?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **Personal coding style!** - Some people work better with smaller compoents, some with larger ones.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## When to create a new component?
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Review the 4 criteria above.
+2. Start with a relatively big component, then split it into smaller compoents as necessary.
+    - If you're not sure if a component is too big, ask yourself: "How many pieces of state/props does it have?"
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## General Guidelines:
+1. Creating a new compoent creates a new abstraction.
+    - More abstractions require more mental energy to switch back and forth between components. Don't create new components too early.
+2. Name a component according to what it does or what it displays. Use long names if needed!
+3. Never declare a new component inside another component.
+4. Co-locate related components inside the same file.
+5. Many different size components will exist in the app, that's normal. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### For Exmaple:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- A BNB page would have the Superhost tag, rare find, favorite selector, and images as small components. But, the Rental unit information, reviews, and price information would be medium/larger due to calculatoins and interdependencies that would be required for those components.
 
-## Learn More
+- The whole "page" component would be very large, likely used once, and generally as the non-reusable component to store reusable components inside.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Small components are generally reusable, large ones are not... Different degrees
