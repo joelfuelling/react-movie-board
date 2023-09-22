@@ -1,4 +1,7 @@
-export default function Navbar({ query, setQuery, movies }) {
+import { useState } from "react";
+
+export default function Navbar({ movies }) {
+  const [query, setQuery] = useState("");
   return (
     <>
       <nav className="nav-bar">

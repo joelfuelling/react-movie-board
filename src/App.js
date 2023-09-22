@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Navbar from "./components/navbar";
-import MoviesSearchedList from "./components/moviesSearched/moviesSearchedList";
-import MoviesWatchedList from "./components/moviesWatched/moviesWatchedList";
+import Main from "./components/main";
 
 const tempMovieData = [
   {
@@ -50,41 +49,14 @@ const tempWatchedData = [
   },
 ];
 
-const average = (arr) =>
-  arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
 export default function App() {
-  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
-  const [isOpen1, setIsOpen1] = useState(true);
-  const [isOpen2, setIsOpen2] = useState(true);
-
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
 
   return (
     <>
-      <Navbar movies={movies} query={query} setQuery={setQuery} />
-      <main className="main">
-        <MoviesSearchedList
-          movies={movies}
-          isOpen1={isOpen1}
-          setIsOpen1={setIsOpen1}
-        />
-
-        <div className="box">
-          <MoviesWatchedList
-            watched={watched}
-            isOpen2={isOpen2}
-            setIsOpen2={setIsOpen2}
-            avgImdbRating={avgImdbRating}
-            avgUserRating={avgUserRating}
-            avgRuntime={avgRuntime}
-          />
-        </div>
-      </main>
+      <Navbar movies={movies} />
+      <Main watched={watched} movies={movies} />
     </>
   );
 }

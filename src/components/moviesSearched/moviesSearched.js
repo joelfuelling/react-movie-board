@@ -8,6 +8,7 @@ export default function MoviesSearched({ movies, isOpen1, setIsOpen1 }) {
       >
         {isOpen1 ? "–" : "+"}
       </Button>
+
       {isOpen1 && (
         <ul className="list">
           {movies?.map((movie) => (

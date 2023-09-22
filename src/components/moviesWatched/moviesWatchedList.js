@@ -11,17 +11,17 @@ export default function MoviesWatchedList({
 }) {
   return (
     <>
-      {isOpen2 && (
-        <>
-          <MoviesWatchedStats
-            watched={watched}
-            avgImdbRating={avgImdbRating}
-            avgUserRating={avgUserRating}
-            avgRuntime={avgRuntime}
-          />
-          <MoviesWatched watched={watched} setIsOpen2={setIsOpen2} />
-        </>
-      )}
+      <MoviesWatchedStats
+        watched={watched}
+        avgImdbRating={avgImdbRating}
+        avgUserRating={avgUserRating}
+        avgRuntime={avgRuntime}
+      />
+      <MoviesWatched
+        watched={watched}
+        setIsOpen2={setIsOpen2}
+        isOpen2={isOpen2}
+      />
     </>
   );
 }
