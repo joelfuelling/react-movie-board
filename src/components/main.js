@@ -1,35 +1,27 @@
-import MoviesSearchedList from "./moviesSearched/moviesSearchedList";
-import MoviesWatchedList from "./moviesWatched/moviesWatchedList";
+import SearchedMoviesList from "./moviesSearched/SearchedMovieList";
+import WatchedList from "./moviesWatched/WatchedList";
 import { useState } from "react";
 
 export default function Main({ movies, watched }) {
-  const [isOpen1, setIsOpen1] = useState(true);
+  const [isSearchedOpen, setIsSearchedOpen] = useState(true);
   const [isOpen2, setIsOpen2] = useState(true);
-
-  const average = (arr) =>
-    arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
 
   return (
     <>
       <main className="main">
-        <MoviesSearchedList
-          movies={movies}
-          isOpen1={isOpen1}
-          setIsOpen1={setIsOpen1}
-        />
-        {/* MoviesWatchedList  */}
         <div className="box">
-          <MoviesWatchedList
+          <SearchedMoviesList
+            movies={movies}
+            isSearchedOpen={isSearchedOpen}
+            setIsSearchedOpen={setIsSearchedOpen}
+          />
+        </div>
+
+        <div className="box">
+          <WatchedList
             watched={watched}
             isOpen2={isOpen2}
             setIsOpen2={setIsOpen2}
-            avgImdbRating={avgImdbRating}
-            avgUserRating={avgUserRating}
-            avgRuntime={avgRuntime}
           />
         </div>
       </main>

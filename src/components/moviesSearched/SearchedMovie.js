@@ -1,15 +1,7 @@
-import Button from "../button";
-export default function MoviesSearched({ movies, isOpen1, setIsOpen1 }) {
+export default function SearchedMovie({ isSearchedOpen, movies }) {
   return (
     <>
-      <Button
-        className="btn-toggle"
-        onClick={() => setIsOpen1((open) => !open)}
-      >
-        {isOpen1 ? "–" : "+"}
-      </Button>
-
-      {isOpen1 && (
+      {isSearchedOpen && (
         <ul className="list">
           {movies?.map((movie) => (
             <li key={movie.imdbID}>
