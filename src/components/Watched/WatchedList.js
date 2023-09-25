@@ -25,8 +25,9 @@ const tempWatchedData = [
   },
 ];
 
-export default function MoviesWatchedList({ isOpen2, setIsOpen2 }) {
+export default function MoviesWatchedList({ isWatchedOpen, setIsWatchedOpen }) {
   const [watched, setWatched] = useState(tempWatchedData);
+
   const average = (arr) =>
     arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -44,8 +45,8 @@ export default function MoviesWatchedList({ isOpen2, setIsOpen2 }) {
       />
       <MoviesWatched
         watched={watched}
-        setIsOpen2={setIsOpen2}
-        isOpen2={isOpen2}
+        setIsWatchedOpen={setIsWatchedOpen}
+        isWatchedOpen={isWatchedOpen}
       />
     </>
   );

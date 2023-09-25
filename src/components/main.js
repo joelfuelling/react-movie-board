@@ -1,10 +1,11 @@
-import SearchedMoviesList from "./moviesSearched/SearchedMovieList";
-import WatchedList from "./moviesWatched/WatchedList";
+import SearchedMoviesList from "./Searched/SearchedMovieList";
+import WatchedList from "./Watched/WatchedList";
 import { useState } from "react";
 
+// {movies} being passed through 'Main' from 'App' to the children components.
 export default function Main({ movies, watched }) {
   const [isSearchedOpen, setIsSearchedOpen] = useState(true);
-  const [isOpen2, setIsOpen2] = useState(true);
+  const [isWatchedOpen, setIsWatchedOpen] = useState(true);
 
   return (
     <>
@@ -20,8 +21,8 @@ export default function Main({ movies, watched }) {
         <div className="box">
           <WatchedList
             watched={watched}
-            isOpen2={isOpen2}
-            setIsOpen2={setIsOpen2}
+            isWatchedOpen={isWatchedOpen}
+            setIsWatchedOpen={setIsWatchedOpen}
           />
         </div>
       </main>

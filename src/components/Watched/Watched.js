@@ -1,15 +1,19 @@
-import Button from "../button";
+import Button from "../UI/button";
 
-export default function MoviesWatched({ watched, isOpen2, setIsOpen2 }) {
+export default function MoviesWatched({
+  watched,
+  isWatchedOpen,
+  setIsWatchedOpen,
+}) {
   return (
     <>
       <Button
         className="btn-toggle"
-        onClick={() => setIsOpen2((open) => !open)}
+        onClick={() => setIsWatchedOpen((open) => !open)}
       >
-        {isOpen2 ? "–" : "+"}
+        {isWatchedOpen ? "–" : "+"}
       </Button>
-      {isOpen2 ? (
+      {isWatchedOpen ? (
         <ul className="list">
           {watched.map((movie) => (
             <li key={movie.imdbID}>

@@ -1,4 +1,6 @@
-export default function SearchBar({ movies, query, setQuery }) {
+import { useState } from "react";
+export default function SearchBar() {
+  const [query, setQuery] = useState("");
   return (
     <>
       <input

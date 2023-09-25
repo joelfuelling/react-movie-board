@@ -1,5 +1,5 @@
 import SearchedMovie from "./SearchedMovie";
-import Button from "../button";
+import Button from "../UI/button";
 export default function SearchedMoviesList({
   movies,
   isSearchedOpen,
