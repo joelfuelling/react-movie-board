@@ -1,14 +1,9 @@
-import Button from "../UI/button";
+import { useState } from "react";
 
-export default function Watched({ watched, isWatchedOpen, setIsWatchedOpen }) {
+export default function WatchedMovie({ watched }) {
+  const [isWatchedOpen, setIsWatchedOpen] = useState(true);
   return (
     <>
-      <Button
-        className="btn-toggle"
-        onClick={() => setIsWatchedOpen((open) => !open)}
-      >
-        {isWatchedOpen ? "–" : "+"}
-      </Button>
       {isWatchedOpen ? (
         <ul className="list">
           {watched.map((movie) => (

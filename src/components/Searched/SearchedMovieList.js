@@ -1,27 +1,15 @@
 import SearchedMovie from "./SearchedMovie";
-import Button from "../UI/button";
-export default function SearchedMoviesList({
-  movies,
-  isSearchedOpen,
-  setIsSearchedOpen,
-}) {
+
+import { useState } from "react";
+export default function SearchedMoviesList({ movies }) {
+  const [isSearchedOpen, setIsSearchedOpen] = useState(true);
   return (
     <>
-      <div className="box">
-        <Button
-          className="btn-toggle"
-          onClick={() => setIsSearchedOpen((open) => !open)}
-        >
-          {isSearchedOpen ? "–" : "+"}
-        </Button>
-        <ul className="list">
-          <SearchedMovie
-            movies={movies}
-            setIsSearchedOpen={setIsSearchedOpen}
-            isSearchedOpen={isSearchedOpen}
-          />
-        </ul>
-      </div>
+      <ul className="list">
+        {movies?.map((movie) =>
+          isSearchedOpen ? <SearchedMovie movie={movie} /> : null
+        )}
+      </ul>
     </>
   );
 }

@@ -106,3 +106,5 @@ return (
 1. In 'Main', accept {children} instead of {movies}.
 2. Import the SearchedMovieLsit and WatchedList components to App.
 3. Within the App component, then within <Main/>, we'll pass the two imported components.
+
+- Now, instead of drilling {movies} through an unecessary number of components, we've setup the {children} for Navbar, Button, and Main, as to avoid unecessary drilling and have State (and derived variables) located as "locally", or farthest down from App, as possible.

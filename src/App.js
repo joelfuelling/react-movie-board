@@ -2,10 +2,11 @@ import { useState } from "react";
 import NavBar from "./components/UI/navbar";
 import Main from "./components/main";
 import Logo from "./components/UI/logo";
-import NumResults from "./components/UI/numResults";
+import NumResults from "./components/numResults";
 import SearchBar from "./components/UI/searchBar";
 import SearchedMoviesList from "./components/Searched/SearchedMovieList";
 import WatchedMovieList from "./components/Watched/WatchedMovieList";
+import Box from "./components/UI/box";
 
 const tempMovieData = [
   {
@@ -32,27 +33,24 @@ const tempMovieData = [
 ];
 
 export default function App() {
-  const [isSearchedOpen, setIsSearchedOpen] = useState(true);
-  const [isWatchedOpen, setIsWatchedOpen] = useState(true);
   const [movies, setMovies] = useState(tempMovieData);
 
   return (
     <>
-      <NavBar movies={movies}>
+      <NavBar>
         <Logo />
         <SearchBar />
         <NumResults movies={movies} />
       </NavBar>
+
       <Main>
-        <SearchedMoviesList
-          isSearchedOpen={isSearchedOpen}
-          setIsSearchedOpen={setIsSearchedOpen}
-          movies={movies}
-        />
-        <WatchedMovieList
-          isWatchedOpen={isWatchedOpen}
-          setIsWatchedOpen={setIsWatchedOpen}
-        />
+        <Box>
+          <SearchedMoviesList movies={movies} />
+        </Box>
+
+        <Box>
+          <WatchedMovieList />
+        </Box>
       </Main>
     </>
   );

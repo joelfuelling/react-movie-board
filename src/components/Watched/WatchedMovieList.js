@@ -1,6 +1,6 @@
 import { useState } from "react";
 import MoviesWatchedStats from "./WatchedMovieStats";
-import MoviesWatched from "./WatchedMovie";
+import WatchedMovie from "./WatchedMovie";
 
 const tempWatchedData = [
   {
@@ -25,31 +25,13 @@ const tempWatchedData = [
   },
 ];
 
-export default function WatchedList({ isWatchedOpen, setIsWatchedOpen }) {
+export default function WatchedMovieList() {
   const [watched, setWatched] = useState(tempWatchedData);
-
-  const average = (arr) =>
-    arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
 
   return (
     <>
-      <div className="box">
-        <MoviesWatchedStats
-          watched={watched}
-          avgImdbRating={avgImdbRating}
-          avgUserRating={avgUserRating}
-          avgRuntime={avgRuntime}
-        />
-        <MoviesWatched
-          watched={watched}
-          setIsWatchedOpen={setIsWatchedOpen}
-          isWatchedOpen={isWatchedOpen}
-        />
-      </div>
+      <MoviesWatchedStats watched={watched} />
+      <WatchedMovie watched={watched} />
     </>
   );
 }
