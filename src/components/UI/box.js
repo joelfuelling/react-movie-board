@@ -13,7 +13,7 @@ export default function Box({ children }) {
         >
           {isOpen ? "–" : "+"}
         </Button>
-        {children}
+        {isOpen && children}
       </div>
     </>
   );

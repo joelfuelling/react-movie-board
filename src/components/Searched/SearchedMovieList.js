@@ -7,7 +7,13 @@ export default function SearchedMoviesList({ movies }) {
     <>
       <ul className="list">
         {movies?.map((movie) =>
-          isSearchedOpen ? <SearchedMovie movie={movie} /> : null
+          isSearchedOpen ? (
+            <SearchedMovie
+              movie={movie}
+              setIsSearchedOpen={setIsSearchedOpen}
+              isSearchedOpen={isSearchedOpen}
+            />
+          ) : null
         )}
       </ul>
     </>

@@ -26,12 +26,19 @@ const tempWatchedData = [
 ];
 
 export default function WatchedMovieList() {
+  const [isWatchedOpen, setIsWatchedOpen] = useState(true);
   const [watched, setWatched] = useState(tempWatchedData);
 
   return (
     <>
-      <MoviesWatchedStats watched={watched} />
-      <WatchedMovie watched={watched} />
+      <div className="box">
+        <MoviesWatchedStats watched={watched} />
+        <WatchedMovie
+          watched={watched}
+          setIsWatchedOpen={setIsWatchedOpen}
+          isWatchedOpen={isWatchedOpen}
+        />
+      </div>
     </>
   );
 }
