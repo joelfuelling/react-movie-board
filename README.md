@@ -184,3 +184,73 @@ Instead of...
    <WatchedMovieList />
 </Box>
 ```
+
+# Star Component Construction
+
+For this one, we're doing to define our CSS as object variables to then pass in to the inline <sytle/> tag.
+
+```
+import {useState} from 'react'
+
+const containerStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: "16px",
+  backgroundColor: "rgb(110, 0, 220,.8)",
+};
+
+const starContainerStyle = {
+  display: "flex",
+  gap: "4px",
+};
+
+const textStyle = {
+  lineHeight: "1",
+  margin: "0",
+};
+```
+
+We're also going to create the star array with an initial length of 10 from scratch using the Array.from constructor.
+
+```
+export default function StarRating() {
+  const [rating, setRating] = useState(null);
+  return (
+    <>
+      <div style={containerStyle}>
+        <div style={starContainerStyle}>
+          {Array.from({ length: 10 }, (_, i) => (
+            <span style={textStyle}>S{i + 1}</span>
+          ))}
+        </div>
+        <p>10</p>
+      </div>
+    </>
+  );
+}
+```
+
+What if we had to use the component twice and pass a difference value in, like below?
+
+```
+<StarRating maxRating={5} />
+<StarRating maxRating={10} />
+```
+
+Well, because we destructure props when we pass them we can redeclare, or set a "default" value for it's use in this component...
+
+```
+export default function StarRating({ maxRating }) {
+  maxRating = 10;
+  const [rating, setRating] = useState(null);
+  return (
+    <>
+      <div style={containerStyle}>
+        <div style={starContainerStyle}>
+          {Array.from({ length: maxRating }, (cur, i) => (
+            <span style={textStyle}>S{i + 1}</span>
+          ))}
+        </div>
+  ...
+}
+```
