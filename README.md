@@ -1,30 +1,102 @@
 <style>
-   .green {
+   .green-22px {
       color: lightgreen;
       font-size: 22px;
+   }
+   .green-13 {
+      color: lightgreen;
+      font-size: 13;
    }
    .red {
       color: red;
       font-size: 22px;
    }
+   .yellow {
+      color: yellow;
+      font-size: 22px;
+   }
+   .big-font {
+      font-size: 40px;
+   }
 </style>
 <br />
 
-# ⚛️ Splitting a React UI into components.
+<details>
+<summary> Do you want to run the app locally? Select <span class="green-13">here</span> for instructions!! 🏎️ 🚀</summary>
 
-<h1>Component size matters</h1>
+## Prerequisites
+
+- Node.js
+- npm or yarn (npm is included with Node.js)
+- Git
+
+## Create and Initialize the Project Folder
+
+To create a new project folder and navigate into it, run the following commands:
+
+```sh
+mkdir project-name
+cd project-name
+```
+
+## Clone the Repository
+
+To get started, you need to clone the repository to your local machine.
+
+```sh
+git clone https://github.com/joelfuelling/react-movie-board.git
+```
+
+Then, cd into the folder of the newly created app.
+
+```sh
+cd react-movie-board
+```
+
+## Dependencies
+
+Navigate to your project directory (see step above this one) and run the following command to install the necessary dependencies:
+
+Using npm:
+
+```sh
+npm install
+```
+
+Or, using yarn:
+
+```sh
+yarn
+```
+
+<br />
+<br />
+Your app should now be running on http://localhost:3000 or another port if you have configured it differently.
+<br />
+<br />
+<br />
+</details>
+
+<br /> <span class="big-font">⚛️Splitting a React UI into components ⚛️</span>
+
+<br />
+
+# 1. Component size matters
 
 Start by sorting them from smallest to largest where you can (or, top to bottom, outside in, depending on how you look at it).
 
 - If a component all of a sudden has 10-15 pieces of state/props to manage, it's probably too big and should be broken up.
-- Big components cannot easily be reused.
-- One large component is hard to understand if it contains too many lines of code.
+- BIG components cannot easily be reused.
+  - One large component is hard to understand if it contains too many lines of code.
 
 * On the flip side, you don't break up EVERYTHING into a component, it's just not necessary and creates a code base that is way too abstracted, or hidden from the developer.
 
 <br />
+<br />
 
-## There are 4 Criteria for splitting a UI into components:
+#
+
+# 2. Four Criteria for splitting a UI into components:
 
 1. **Logical separation of content/layout** - Does the component contain pieces of content or layout that 'don't belong together'? (if so, you might need a new component)
 
@@ -45,7 +117,9 @@ Start by sorting them from smallest to largest where you can (or, top to bottom,
 <br />
 <br />
 
-# When to create a new component?
+#
+
+# 3. When to create a new component?
 
 Review the 4 criteria above. Start with a relatively big component, then split it into smaller compoents as necessary.
 
@@ -56,7 +130,9 @@ If you're not sure if a component is too big, ask yourself: "How many pieces of 
 1. Creating a new compoent creates a new abstraction.
    - More abstractions require more mental energy to switch back and forth between components. Don't create new components too early.
 2. Name a component according to what it does or what it displays. Use long names if needed!
-3. Never declare a new component inside another component.
+
+3. > [!WARNING]  
+   > <span class="red">Never declare a new component inside another component.</span>
 4. Co-locate related components inside the same file.
 5. Many different size components will exist in the app, that's normal.
 
@@ -72,7 +148,7 @@ If you're not sure if a component is too big, ask yourself: "How many pieces of 
 <br />
 <br />
 
-# Component Categories
+# 4. Component Categories
 
 1. Stateless/Presentational componenes
 
@@ -91,34 +167,32 @@ If you're not sure if a component is too big, ask yourself: "How many pieces of 
 
 <br />
 <br />
+
+# 5. Prop Drilling
+
+Passing props through components to be used in others... Can quickly get messy, which is _why_ we try to store state as locally as possible. In this way we practice separation of concerns and avoid repeating code.
+<br />
+<br />
 <br />
 
-# Prop Drilling
-
-Passing props through components to be used in others... Can quickly get messy, which is _why_ we try to store state as locally as
-<br />
-<br />
-<br />
-
-# Children
+# 6. Children
 
 - Allows components to be more reusable by passing 'chidlren' as the content between the opening and closing tag of the component.
 - Components DO NOT NEED to know the contents in advance.
 <br /><br />
-<div class="green">
+<div class="green-22px">
 Do this...
 </div>
 
 ```
 export default function Navbar({ children }) {
-   return (
-    <>
+return (
+   <>
       <nav className="nav-bar">
-         {children}
+      {children}
       </nav>
-    </>
+   </>
 )}
-
 ```
 
 <br />
@@ -128,7 +202,7 @@ Instead of...
 
 ```
 export default function Navbar({ movies }) {
-   return (
+return (
    <>
       <nav className="nav-bar">
          <Logo />
@@ -137,35 +211,42 @@ export default function Navbar({ movies }) {
       </nav>
    </>
 )}
-
 ```
+
+<br />
+<br />
+
+# 6.1 Let's use the <span span class="yellow">{children}</span> prop
 
 Lets apply the children concept to the Main component for both the SearchedMovieList, and WatchedList since they're identical formats. We're also going to add a Box component since each list is very similar.
 
-1. In 'Main', accept {children} instead of {movies}.
-2. Import the SearchedMovieLsit and WatchedList components to App.
-3. Within the App component, within the main component, we'll pass the two imported components.
+1. In `<Main/>`, accept `{children}` instead of `{movies}`.
+2. Import the `SearchedMovieList` and `WatchedList` components to `App`.
+3. Within the `App` component, within the `<Main/>` component, we'll pass the two imported components.
 
-Now, instead of drilling {movies} through an unecessary number of components, we've setup the {children} for Navbar, Button, and Main, as to avoid unecessary drilling and have State (and derived variables) located as "locally", or farthest down from App, as possible.
+Now, instead of drilling `{movies}` through an unecessary number of components, we've setup the `{children}` for `Navbar`, `Button`, and `Main`, as to avoid unecessary drilling and have State (and derived variables) located as "locally", or farthest down from App, as possible.
+<br />
+<br />
 
-## Passing <span style="color: yellow">Elements </span>as props (instead of Children)
+# 6.2 Passing <span class="yellow">Elements </span>as props (instead of Children)
 
-Instead of using children, we can use an explicity names prop as an alternative.
+Instead of using children, we can use an explicity named props as an alternative, though using children is generally the way to go.
 
-## This element can be named whatever we want!!</span>
+## This element can be named whatever we want!!
 
-1. Comment out the existing 'box' componentx in App, then navigate to the 'box' component..
-2. Instead of accepting {children}, accept {element} (_this can be called whatever_).
-   - Don't forget to change children to element at the bottom of the Box component {isOpen && element} conditional.
-3. Go back to App and put the components into the elements to be passed.
+1. Comment out the existing `Box` componentx in `App`, then navigate to the `Box` component..
+2. Instead of accepting `{children}`, accept `{element}` (_this can be called whatever_).
+   - Don't forget to change children to element at the bottom of the Box component `{isOpen && element}` conditional.
+3. Go back to `App` and put the components into the elements to be passed.
    <br />
    <br />
 
-<div class="green">
+<div class="green-22px">
 Do this...
 </div>
 
 ```
+
 <Main>
         <Box element={<SearchedMoviesList movies={movies} />} />
         <Box element={<WatchedMovieList />} />
@@ -185,9 +266,12 @@ Instead of...
 </Box>
 ```
 
-# Star Component Construction
+<br />
+<br />
 
-For this one, we're doing to define our CSS as object variables to then pass in to the inline <sytle/> tag.
+# 7. Star Component Construction
+
+For this one, we're going to define our CSS as object variables to then pass in to the inline `<style/>` tag.
 
 ```
 import {useState} from 'react'
@@ -195,7 +279,7 @@ import {useState} from 'react'
 const containerStyle = {
   display: "flex",
   alignItems: "center",
-  gap: "16px",
+  gap: "13",
   backgroundColor: "rgb(110, 0, 220,.8)",
 };
 
@@ -210,7 +294,12 @@ const textStyle = {
 };
 ```
 
-We're also going to create the star array with an initial length of 10 from scratch using the Array.from constructor.
+We're going to create the star array with an initial length of 10 using the Array.from constructor. We only need to know the index, so we leave the 'current element' argument blank using '\_'.
+
+- This can be done to any functional argument as a general rule.
+  </br>
+  </br>
+  </br>
 
 ```
 export default function StarRating() {
@@ -230,7 +319,9 @@ export default function StarRating() {
 }
 ```
 
-What if we had to use the component twice and pass a difference value in, like below?
+<br />
+
+<h1> What if we had to use the component twice and pass a difference value in, like below?</h1>
 
 ```
 <StarRating maxRating={5} />
@@ -287,6 +378,38 @@ export default function StarRating({ maxRating = 5 }) {
     </>
   );
 }
-
-
 ```
+
+<br />
+<br />
+<br />
+
+# 7. Props as a component API
+
+As a component creator, we choose what public interface the user interacts with. We can expose as much or as little of the API to the consumer. Or, how much of the "abstracted code" will they be able to interact with.
+
+No matter how you approach it, it's always a good idea to think of a <span class="green-13">creator</span> and a <span class="green-13">consumer</span> of the component.
+
+For Example: let's say we're making a weather component. What if we only had 1 prop, the location? OK, that's fine (I guess?) but it won't allow enough of the code to be used in order to provide value. Too many props on the other hand though would expose too much complexity and make the API hard to use.
+
+### Too little Props
+
+- Not flexible enough
+- Might not be useful
+
+### Too many props
+
+- Too hard to use
+- Exposing too much complexity
+- Hard-to-write code
+- Provide good default values
+
+<br />
+<br />
+<br />
+
+# 8. Improving Reusability with Props
+
+> NOTE: We've added `'color'`, and `'size'` as new properties to the `textStyle` to pass into the ` Star` component so we've gone and done that.
+
+First, let's find a good public API to use instead of our static movies array.
