@@ -100,3 +100,9 @@ return (
 </>
 );
 }`
+
+- Lets apply the children to the Main component for both the SearchedMovieList, and WatchedList since they're identical formats
+
+1. In 'Main', accept {children} instead of {movies}.
+2. Import the SearchedMovieLsit and WatchedList components to App.
+3. Within the App component, then within <Main/>, we'll pass the two imported components.

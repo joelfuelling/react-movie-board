@@ -7,19 +7,21 @@ export default function SearchedMoviesList({
 }) {
   return (
     <>
-      <Button
-        className="btn-toggle"
-        onClick={() => setIsSearchedOpen((open) => !open)}
-      >
-        {isSearchedOpen ? "–" : "+"}
-      </Button>
-      <ul className="list">
-        <SearchedMovie
-          movies={movies}
-          setIsSearchedOpen={setIsSearchedOpen}
-          isSearchedOpen={isSearchedOpen}
-        />
-      </ul>
+      <div className="box">
+        <Button
+          className="btn-toggle"
+          onClick={() => setIsSearchedOpen((open) => !open)}
+        >
+          {isSearchedOpen ? "–" : "+"}
+        </Button>
+        <ul className="list">
+          <SearchedMovie
+            movies={movies}
+            setIsSearchedOpen={setIsSearchedOpen}
+            isSearchedOpen={isSearchedOpen}
+          />
+        </ul>
+      </div>
     </>
   );
 }

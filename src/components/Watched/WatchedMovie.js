@@ -1,10 +1,6 @@
 import Button from "../UI/button";
 
-export default function MoviesWatched({
-  watched,
-  isWatchedOpen,
-  setIsWatchedOpen,
-}) {
+export default function Watched({ watched, isWatchedOpen, setIsWatchedOpen }) {
   return (
     <>
       <Button

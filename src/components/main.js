@@ -1,31 +1,9 @@
-import SearchedMoviesList from "./Searched/SearchedMovieList";
-import WatchedList from "./Watched/WatchedList";
-import { useState } from "react";
-
-// {movies} being passed through 'Main' from 'App' to the children components.
-export default function Main({ movies, watched }) {
-  const [isSearchedOpen, setIsSearchedOpen] = useState(true);
-  const [isWatchedOpen, setIsWatchedOpen] = useState(true);
-
+// Prior to {chidlren}, we had to import the entire SearchedMoviesList and WatchedMovieList, and {useState}, to setup the component. Now, we're pulling the {children} from the App component.
+//% Those two Children are the two components and their props.
+export default function Main({ children }) {
   return (
     <>
-      <main className="main">
-        <div className="box">
-          <SearchedMoviesList
-            movies={movies}
-            isSearchedOpen={isSearchedOpen}
-            setIsSearchedOpen={setIsSearchedOpen}
-          />
-        </div>
-
-        <div className="box">
-          <WatchedList
-            watched={watched}
-            isWatchedOpen={isWatchedOpen}
-            setIsWatchedOpen={setIsWatchedOpen}
-          />
-        </div>
-      </main>
+      <main className="main">{children}</main>
     </>
   );
 }

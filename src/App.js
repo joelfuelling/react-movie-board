@@ -4,6 +4,8 @@ import Main from "./components/main";
 import Logo from "./components/UI/logo";
 import NumResults from "./components/UI/numResults";
 import SearchBar from "./components/UI/searchBar";
+import SearchedMoviesList from "./components/Searched/SearchedMovieList";
+import WatchedMovieList from "./components/Watched/WatchedMovieList";
 
 const tempMovieData = [
   {
@@ -30,6 +32,8 @@ const tempMovieData = [
 ];
 
 export default function App() {
+  const [isSearchedOpen, setIsSearchedOpen] = useState(true);
+  const [isWatchedOpen, setIsWatchedOpen] = useState(true);
   const [movies, setMovies] = useState(tempMovieData);
 
   return (
@@ -39,7 +43,17 @@ export default function App() {
         <SearchBar />
         <NumResults movies={movies} />
       </NavBar>
-      <Main movies={movies} />
+      <Main>
+        <SearchedMoviesList
+          isSearchedOpen={isSearchedOpen}
+          setIsSearchedOpen={setIsSearchedOpen}
+          movies={movies}
+        />
+        <WatchedMovieList
+          isWatchedOpen={isWatchedOpen}
+          setIsWatchedOpen={setIsWatchedOpen}
+        />
+      </Main>
     </>
   );
 }
