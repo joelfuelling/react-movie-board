@@ -78,7 +78,8 @@ Your app should now be running on http://localhost:3000 or another port if you h
 <br />
 </details>
 
-<br /> <span class="big-font">⚛️Splitting a React UI into components ⚛️</span>
+<br /> 
+<div class="big-font">⚛️ Splitting a React UI into components ⚛️</div>
 
 <br />
 
