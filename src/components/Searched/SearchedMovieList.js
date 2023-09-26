@@ -12,6 +12,7 @@ export default function SearchedMoviesList({ movies }) {
               movie={movie}
               setIsSearchedOpen={setIsSearchedOpen}
               isSearchedOpen={isSearchedOpen}
+              key={movie.imdbID}
             />
           ) : null
         )}
