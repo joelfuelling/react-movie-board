@@ -1,3 +1,10 @@
+<br />
+
+<details>
+<summary> Do you want to run the app locally? Select <span class="green-13">here</span> for instructions!! 🏎️ 🚀</summary>
+
+## Prerequisites
+
 <style>
    .green-22px {
       color: lightgreen;
@@ -19,12 +26,6 @@
       font-size: 40px;
    }
 </style>
-<br />
-
-<details>
-<summary> Do you want to run the app locally? Select <span class="green-13">here</span> for instructions!! 🏎️ 🚀</summary>
-
-## Prerequisites
 
 - Node.js
 - npm or yarn (npm is included with Node.js)
