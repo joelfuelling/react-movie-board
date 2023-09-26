@@ -25,10 +25,6 @@ export default function StarRating({ maxRating = 5 }) {
     setRating(rating);
   }
 
-  function handleRatingHover(tempRating) {
-    setTempRating((tempRating) => !tempRating);
-  }
-
   return (
     <>
       <div style={containerStyle}>
@@ -37,14 +33,13 @@ export default function StarRating({ maxRating = 5 }) {
             <Star
               key={i}
               onRateClick={() => handleRatingClick(i + 1)}
-              onRateHover={() => handleRatingHover(i + 1)}
-              full={rating >= i + 1 ? rating : ""}
-              rating={rating}
-              tempRating={tempRating}
+              onRateEnter={() => setTempRating(i + 1)}
+              onRateExit={() => setTempRating(0)}
+              full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
             />
           ))}
         </div>
-        <p style={textStyle}>{rating || ""}</p>
+        <p style={textStyle}>{tempRating || rating || ""}</p>
       </div>
     </>
   );

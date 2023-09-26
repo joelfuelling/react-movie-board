@@ -254,3 +254,39 @@ export default function StarRating({ maxRating }) {
   ...
 }
 ```
+
+We've added an onClick to setRating when a Star is clicked, and to alter the tempRating (ie, the hovered state) to change dynamically we're using onMouseEnter, and onMouseExit to change state based off the function names as the event.
+
+We've then added conditioals "" || "" || "" to check first if there is a tempRating, then check for a Rating, then default to "". This way, while we're "inside" the component the tempRating is displayed in priority over teh current 'rating', and when we "leave" the component the 'rating' state takes precedence since there is no longer a 'tempRating'
+
+```
+export default function StarRating({ maxRating = 5 }) {
+  const [rating, setRating] = useState(0);
+  const [tempRating, setTempRating] = useState(0);
+
+  function handleRatingClick(rating) {
+    setRating(rating);
+  }
+
+  return (
+    <>
+      <div style={containerStyle}>
+        <div style={starContainerStyle}>
+          {Array.from({ length: maxRating }, (cur, i) => (
+            <Star
+              key={i}
+              onRateClick={() => handleRatingClick(i + 1)}
+              onRateEnter={() => setTempRating(i + 1)}
+              onRateExit={() => setTempRating(0)}
+              full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
+            />
+          ))}
+        </div>
+        <p style={textStyle}>{tempRating || rating || ""}</p>
+      </div>
+    </>
+  );
+}
+
+
+```
