@@ -386,7 +386,7 @@ export default function StarRating({ maxRating = 5 }) {
 <br />
 <br />
 
-# 7. Props as a component API
+# 8. Props as a component API
 
 As a component creator, we choose what public interface the user interacts with. We can expose as much or as little of the API to the consumer. Or, how much of the "abstracted code" will they be able to interact with.
 
@@ -410,7 +410,7 @@ For Example: let's say we're making a weather component. What if we only had 1 p
 <br />
 <br />
 
-# 8. Improving Reusability with Props
+# 9. Improving Reusability with Props
 
 > NOTE: We've added `'color'`, and `'size'` as new properties to the `textStyle` to pass into the ` Star` component so we've gone and done that.
 
