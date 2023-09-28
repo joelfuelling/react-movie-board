@@ -410,6 +410,36 @@ For Example: let's say we're making a weather component. What if we only had 1 p
 <br />
 <br />
 
-# 9. Improving Reusability with Props
+# 9. Prop Types
 
-> NOTE: We've added `'color'`, and `'size'` as new properties to the `textStyle` to pass into the ` Star` component so we've gone and done that.
+Specify the _type_ of value we expect the user to pass in for each prop. maxRating really must be a number, and nothing else. This is type checking in it's simplest form. use TypeScript if you care more about this.
+
+React has a built in propTypes we can use for this example, though we won't be using it for the rest of the course.
+
+### Declaring Prop Types
+
+1st, import PropTypes into the file.
+
+```
+import PropTypes from 'prop-types'
+```
+
+To set the types...
+
+1. Setup the Component.propTypes object equal to an object containing the declared props.
+2. Declare each types using 'PropTypes.' then the data type.
+3. Add additional chaining argument (.isRequired, etc.) as necessary.
+
+```
+StarRating.propTypes = {
+  maxRating: PropTypes.number,
+  color: PropTypes.string,
+  size: PropTypes.number,
+  className: PropTypes.string,
+  messages: PropTypes.arrayOf(
+PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  ),
+  defaultRating: PropTypes.number,
+  onSetRating: PropTypes.func,
+};
+```
