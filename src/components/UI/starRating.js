@@ -13,12 +13,18 @@ const starContainerStyle = {
 };
 
 export default function StarRating({
+  /* 
+  You've probably heard "you should never initialize state from props", as we're doing below with ratingDefault. However, this is only true if you want the state variable to stay in sync with the passed prop. Or, if you want the state value to update in case the prop value is updated, which is not the case here. We're using defaultRating essentially as Seed Data.
+  */
   maxRating = 5,
   color = "#fcc419",
   size = 48,
   className = "",
+  messages = [],
+  defaultRating = 0,
+  onSetRating,
 }) {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
   const textStyle = {
@@ -30,12 +36,13 @@ export default function StarRating({
 
   function handleRatingClick(rating) {
     setRating(rating);
+    onSetRating(rating);
   }
 
   return (
     <>
-      <div style={containerStyle} className={className}>
-        <div style={starContainerStyle}>
+      <div style={containerStyle}>
+        <div style={starContainerStyle} className={className}>
           {Array.from({ length: maxRating }, (cur, i) => (
             <Star
               key={i}
@@ -48,7 +55,12 @@ export default function StarRating({
             />
           ))}
         </div>
-        <p style={textStyle}>{tempRating || rating || ""}</p>
+        <p style={textStyle}>
+          {/* Only display messages if there are the same amount as the maxRating, else look for a tempRating, then a rating. */}
+          {messages.length === maxRating
+            ? messages[tempRating ? tempRating - 1 : rating - 1]
+            : tempRating || rating || ""}
+        </p>
       </div>
     </>
   );

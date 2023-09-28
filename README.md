@@ -413,5 +413,3 @@ For Example: let's say we're making a weather component. What if we only had 1 p
 # 9. Improving Reusability with Props
 
 > NOTE: We've added `'color'`, and `'size'` as new properties to the `textStyle` to pass into the ` Star` component so we've gone and done that.
-
-First, let's find a good public API to use instead of our static movies array.
